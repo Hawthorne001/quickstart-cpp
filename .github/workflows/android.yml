@@ -157,8 +157,9 @@ jobs:
         shell: bash
         run: |
           set -x
+          CLEAN_APIS=$(echo ${NEEDS_CHECK_AND_PREPARE_OUTPUTS_APIS} | tr -d "'" | tr -d "\"")
           python scripts/build_scripts/build_testapps.py --p Android \
-            --t ${NEEDS_CHECK_AND_PREPARE_OUTPUTS_APIS}  \
+            --t ${CLEAN_APIS}  \
             --output_directory "${{ github.workspace }}" \
             --artifact_name "android-${{ matrix.os }}" \
             --noadd_timestamp \
